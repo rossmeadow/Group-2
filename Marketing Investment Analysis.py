@@ -68,17 +68,12 @@ month = [
     [d31],]
 
 # Definition of Variables
-
-
 cust_count_month = 0 #Global Variable
 tot_purchase_amount_month = 0  # Global Variable
-
-
 
 # User prompt for month, date, and marketing budget
 # Need Checkers to check for valid day and that no repeats are made
 new_day = input("\nWould you like to begin a new day? (y/n)")
-
 
 while new_day == "y":
 
@@ -135,7 +130,6 @@ while new_day == "y":
                 listof_phonenumbers.append(customer)
                 ask_for_number = False
 
-
         # Customer input for channel increases count by +1 per channel
 
         channel = input("How did you hear about us? \n 1.) Facebook \n 2.) Instagram \n 3.) Word of mouth\n 4.) Google \n")
@@ -189,7 +183,6 @@ while new_day == "y":
             print("\nInvalid input")
             enter_another = input("Enter another customer? (y/n): ")
 
-
     if enter_another == 'n':
 
     # function for finding avg of sales per channel
@@ -203,7 +196,6 @@ while new_day == "y":
     while run_report != "y" and run_report != 'n':
         print("\nInvalid input")
         run_report = input("Would you like to run the end of day report? (y/n): ")
-
 
     if run_report == "y":
         print("\nTotal number of customers entered for today is: ", cust_count_day)
