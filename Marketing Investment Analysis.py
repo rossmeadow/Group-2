@@ -32,8 +32,9 @@ d30 = []
 d31 = []
 
 ## Formatting to an array
-
+key = ["Phone_list","Customer Count","Total Sales","FB","IG","WOM","Goog"]
 month = [
+    [key],
     [d1],
     [d1],
     [d2],
@@ -471,3 +472,5 @@ if EOM_report == "y":
         for j in i:
             print(j, end=" ")
         print()
+
+    new_day = input("\nWould you like to begin a new day? (y/n)")
