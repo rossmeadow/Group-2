@@ -459,7 +459,7 @@ while new_day == "y":
             EOM_report = input("Would you like to view the end of month report? (y/n): ")
 
         if EOM_report == "y":
-            print("The total number of customers for the month is:", cust_count_month)
+            print("\nThe total number of customers for the month is:", cust_count_month)
             print("The total number of sales for the month is:", tot_purchase_amount_month)
             for i in month:
                 for j in i:
@@ -480,43 +480,9 @@ if new_day == "n":
 
 
 if EOM_report == "y":
-    print("The total number of customers for the month is:", cust_count_month )
+    print("\nThe total number of customers for the month is:", cust_count_month )
     print("The total number of sales for the month is:", tot_purchase_amount_month)
     for i in month:
         for j in i:
             print(j, end=" ")
         print()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### NEED TO START LIST COMPARISONS FOR END OF MONTH ###
-
-
-
