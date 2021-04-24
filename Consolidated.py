@@ -1,10 +1,8 @@
-import os
-
 # Definition of Variables
 
 # Globals 
 
-data = {} # holds all days
+data = {} # holds all days. Using a dictionary so that we can dynamically add days here
 cust_count_month = 0
 tot_purchase_amount_month = 0
 total_facebook = 0
@@ -12,9 +10,11 @@ total_instagram = 0
 total_word = 0
 total_google = 0
 
+# function to format percentages of purchase amounts
 def percentOfTotal(val):
     return "{:.0%}".format(val/tot_purchase_amount_month)
 
+# function to calculate and print monthly report
 def showMonth():
     fb_total = 0
     insta_total = 0
@@ -181,7 +181,16 @@ while new_day == "y":
     temp.append(word_of_mouth_purchase_amt)
     temp.append(google_purchase_amt) ## percentage of dollars per channel
 
-    data[dateday] = temp
+    '''
+        dateday # 7
+
+        data[dateday] = temp
+
+        data = {}
+        data[7] = temp
+
+        data = {empty, empty, empty, empty, empty, empty, [temp stuff]}
+    '''
 
     new_day = input("Would you like to begin a new day? (y/n)")
     while new_day != "y" and new_day != 'n':
@@ -197,9 +206,10 @@ while new_day == "y":
         if view_phonelist == "y":
             print(listof_phonenumbers)
 
-        show_month = input("Press y to run the monthly report, and anything else to end the app. (y/n)")
+        show_month = input("Press y to run the monthly report, and anything else to end the program. (y/n)")
 
         if (show_month == 'y'):
+            # call the funcion to calculate aand print monthly report, and finish running the program
             showMonth()
 
 
