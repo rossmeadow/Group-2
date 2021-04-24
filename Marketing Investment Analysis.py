@@ -196,10 +196,7 @@ while new_day == "y":
         def percent(x):
             return "{:.0%}".format(x/tot_purchase_amount_day)
 
-    # Need to append correct data to lists
-
-
-
+    # append correct data to lists
 
     run_report = input("Would you like to run the end of day report? (y/n): ")
 
@@ -471,13 +468,9 @@ while new_day == "y":
         elif EOM_report == "n":
             new_day = input("\nWould you like to begin a new day? (y/n)")
 
-
-
-
 if new_day == "n":
 
     EOM_report = input("Would you like to view the end of month report? (y/n)")
-
 
 if EOM_report == "y":
     print("\nThe total number of customers for the month is:", cust_count_month )
