@@ -31,6 +31,40 @@ d29 = []
 d30 = []
 d31 = []
 
+month = [
+    [d1],
+    [d1],
+    [d2],
+    [d3],
+    [d4],
+    [d5],
+    [d6],
+    [d7],
+    [d8],
+    [d9],
+    [d10],
+    [d11],
+    [d12],
+    [d13],
+    [d14],
+    [d15],
+    [d16],
+    [d17],
+    [d18],
+    [d19],
+    [d20],
+    [d21],
+    [d22],
+    [d23],
+    [d24],
+    [d25],
+    [d26],
+    [d27],
+    [d28],
+    [d29],
+    [d30],
+    [d31],]
+
 # Definition of Variables
 
 
@@ -180,7 +214,7 @@ while new_day == "y":
         print(facebook,"\t\t\t",instagram,"\t\t\t",word_of_mouth,"\t\t\t\t",google)
         print("\nPercentage of sales in:")
         print("Facebook \t Instagram \t Word of Mouth \t Google")
-        print(percent(facebook_purchase_amt),"\t\t",percent(instagram_purchase_amt),"\t\t",percent(word_of_mouth_purchase_amt),"\t\t\t",percent(google_purchase_amt))
+        print(percent(facebook_purchase_amt),"\t\t",percent(instagram_purchase_amt),"\t\t",percent(word_of_mouth_purchase_amt),"\t\t\t",percent(google_purchase_amt),"\n")
 
     if dateday == 1:
         d1.append(listof_phonenumbers)
@@ -417,29 +451,63 @@ while new_day == "y":
         new_day = input("Would you like to begin a new day? (y/n)")
 
     while new_day == "n":
-        view_phonelist = input("Would you like to view the list of phone numbers? (y/n): ")
-        while view_phonelist != "y" and view_phonelist != 'n':
+        EOM_report = input("Would you like to view the end of month report? (y/n): ")
+        while EOM_report != "y" and EOM_report != 'n':
             print("Invalid input")
-            view_phonelist = input("Would you like to view the list of phone numbers? (y/n): ")
+            EOM_report = input("Would you like to view the end of month report? (y/n): ")
 
-        if view_phonelist == "y":
-            print(listof_phonenumbers)
-            new_day = input("Would you like to begin a new day? (y/n)")
-            while new_day != "y" and new_day != 'n':
-                print("\nInvalid input")
-                new_day = input("Would you like to begin a new day? (y/n)")
+        if EOM_report == "y":
+            for i in month:
+                for j in i:
+                    print(j, end=" ")
+                print()
 
-        elif view_phonelist == "n":
             new_day = input("Would you like to begin a new day? (y/n)")
 
+        elif EOM_report == "n":
+            new_day = input("\nWould you like to begin a new day? (y/n)")
 
-        elif run_report == "n":
-            view_phonelist = input("Would you like to view the list of phone numbers? (y/n): ")
-            if view_phonelist == "y":
-                print(listof_phonenumbers)
-                new_day = input("\nWould you like to begin a new day? (y/n)")
-            while new_day == "n":
-                new_day = input("\nWould you like to begin a new day? (y/n)")
+
+
+
+if new_day == "n":
+
+    EOM_report = input("Would you like to view the end of month report? (y/n)")
+
+
+if EOM_report == "y":
+    print("Metrics")
+    for i in month:
+        for j in i:
+            print(j, end=" ")
+        print()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
