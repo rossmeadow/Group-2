@@ -177,7 +177,7 @@ while new_day == "y":
     if run_report == "y":
         showday()
 
-### Appends temp list with customer data ###
+### Appends temp list with customer data ####
 
     temp = []
     temp.append(listof_phonenumbers)
