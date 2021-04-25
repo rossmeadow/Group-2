@@ -2,7 +2,7 @@
 
 # Globals 
 
-data = {} ### Using a dictionary so that we can dynamically add all days here for monthly comparison ###
+monthly_data = {} ### Using a dictionary so that we can dynamically add all days here for monthly comparison ###
 cust_count_month = 0
 tot_purchase_amount_month = 0
 total_facebook = 0
@@ -25,14 +25,14 @@ def showMonth():
     word_total = 0
     google_total = 0
 
-### Indexs data in temp list in dict. for month report ##
+### Indexs data for daily_info list for monthly report using day as key ##
 
-    for key in data:
-        temp = data[key]
-        fb_total += temp[3]
-        insta_total += temp[4]
-        word_total += temp[5]
-        google_total += temp[6]
+    for dateday in monthly_data:
+        daily_info = monthly_data[dateday]
+        fb_total += daily_info[3]
+        insta_total += daily_info[4]
+        word_total += daily_info[5]
+        google_total += daily_info[6]
 
     print("\nMonthy sales for respective channel:")
     print(dollar_format(fb_total),"\t", dollar_format(insta_total),"\t", dollar_format(word_total),"\t", dollar_format(google_total))
@@ -177,20 +177,20 @@ while new_day == "y":
     if run_report == "y":
         showday()
 
-### Appends temp list with customer data ####
+### Appends list with customer data ####
 
-    temp = []
-    temp.append(listof_phonenumbers)
-    temp.append(cust_count_day) ## Number of customers for the current day
-    temp.append(tot_purchase_amount_day ) ## total purchase amount for the current day
-    temp.append(facebook_purchase_amt)
-    temp.append(instagram_purchase_amt)
-    temp.append(word_of_mouth_purchase_amt)
-    temp.append(google_purchase_amt) ## percentage of dollars per channel
+    daily_info = []
+    daily_info.append(listof_phonenumbers)
+    daily_info.append(cust_count_day) ## Number of customers for the current day
+    daily_info.append(tot_purchase_amount_day ) ## total purchase amount for the current day
+    daily_info.append(facebook_purchase_amt)
+    daily_info.append(instagram_purchase_amt)
+    daily_info.append(word_of_mouth_purchase_amt)
+    daily_info.append(google_purchase_amt) ## percentage of dollars per channel
 
-### Appends dictionary with temp lists ###
+### Appends dictionary with list ###
 
-    data[dateday] = temp
+    monthly_data[dateday] = daily_info
 
     new_day = input("\nWould you like to begin a new day? (y/n)")
     while new_day != "y" and new_day != 'n':
