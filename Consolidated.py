@@ -2,13 +2,17 @@
 
 # Globals 
 
-data = {} # holds all days. Using a dictionary so that we can dynamically add days here
+data = {} ### Using a dictionary so that we can dynamically add all days here for monthly comparison ###
 cust_count_month = 0
 tot_purchase_amount_month = 0
 total_facebook = 0
 total_instagram = 0
 total_word = 0
 total_google = 0
+
+
+def dollar_format(x):
+    return "${:,.2f}".format(x)
 
 # function to format percentages of purchase amounts
 def percentOfTotal(val):
@@ -21,6 +25,8 @@ def showMonth():
     word_total = 0
     google_total = 0
 
+### Indexs data in temp list in dict. for month report ##
+
     for key in data:
         temp = data[key]
         fb_total += temp[3]
@@ -28,11 +34,10 @@ def showMonth():
         word_total += temp[5]
         google_total += temp[6]
 
-
-    print(fb_total, insta_total, word_total, google_total)
-
+    print("\nMonthy sales for respective channel:")
+    print(dollar_format(fb_total),"\t", dollar_format(insta_total),"\t", dollar_format(word_total),"\t", dollar_format(google_total))
     print("\nTotal number of customers entered for the month is: ", cust_count_month)
-    print("Total amount of sales entered for the month is: ",tot_purchase_amount_month)
+    print("Total amount of sales entered for the month is: ",dollar_format(tot_purchase_amount_month))
     print("\nNumber of monthly customers from:")
     print("Facebook \t Instagram \t Word of Mouth \t Google")
     print(total_facebook,"\t\t\t",total_instagram,"\t\t\t",total_word,"\t\t\t\t",total_google)
@@ -40,9 +45,9 @@ def showMonth():
     print("Facebook \t Instagram \t Word of Mouth \t Google")
     print(percentOfTotal(fb_total),"\t\t",percentOfTotal(insta_total),"\t\t",percentOfTotal(word_total),"\t\t\t",percentOfTotal(google_total))
 
-
 # User prompt for month, date, and marketing budget
 # Need Checkers to check for valid day and that no repeats are made
+
 new_day = input("\nWould you like to begin a new day? (y/n)")
 
 while new_day == "y":
@@ -64,7 +69,7 @@ while new_day == "y":
 
     dateday = int(input("Enter a day as an integer (eg. 1-31): "))
 
-    while dateday < 1 or dateday >= 32: #### Crashes if 33 is entered??? ####
+    while dateday < 1 or dateday > 31: #### Crashes if 33 is entered??? ####
         print("Invalid input")
         dateday = input("Enter a day: ")
 
@@ -77,9 +82,6 @@ while new_day == "y":
 
     while enter_another == 'y':
         customer = input("Enter phone number in format (000)000-0000: ")
-
-        #### Need an int checker here ###
-
         while len(customer) != 13:
             print("\nInvalid input")
             customer = input("Enter phone number: ")
@@ -93,7 +95,6 @@ while new_day == "y":
             else:
                 listof_phonenumbers.append(customer)
                 ask_for_number = False
-
 
         # Customer input for channel increases count by +1 per channel
 
@@ -147,30 +148,36 @@ while new_day == "y":
             print("\nInvalid input")
             enter_another = input("Enter another customer? (y/n): ")
 
-
     if enter_another == 'n':
 
     # function for finding avg of sales per channel
+
         def percent(x):
             return "{:.0%}".format(x/tot_purchase_amount_day)
 
-    # Need to append correct data to lists
+        def showday():
+            print("\nDaily sales for respective channel:")
+            print(dollar_format(facebook_purchase_amt),"\t",dollar_format(instagram_purchase_amt)
+                  ,"\t",dollar_format(word_of_mouth_purchase_amt),"\t",dollar_format(google_purchase_amt))
+            print("\nTotal number of customers entered for today is: ", cust_count_day)
+            print("Total amount of sales entered for today is: ", dollar_format(tot_purchase_amount_day))
+            print("\nNumber of customers from:")
+            print("Facebook \t Instagram \t Word of Mouth \t Google")
+            print(facebook, "\t\t\t", instagram, "\t\t\t", word_of_mouth, "\t\t\t\t", google)
+            print("\nPercentage of sales in:")
+            print("Facebook \t Instagram \t Word of Mouth \t Google")
+            print(percent(facebook_purchase_amt), "\t\t", percent(instagram_purchase_amt), "\t\t",
+                  percent(word_of_mouth_purchase_amt), "\t\t\t", percent(google_purchase_amt))
 
     run_report = input("Would you like to run the end of day report? (y/n): ")
-
     while run_report != "y" and run_report != 'n':
         print("\nInvalid input")
         run_report = input("Would you like to run the end of day report? (y/n): ")
 
     if run_report == "y":
-        print("\nTotal number of customers entered for today is: ", cust_count_day)
-        print("Total amount of sales entered for today is: ",tot_purchase_amount_day)
-        print("\nNumber of customers from:")
-        print("Facebook \t Instagram \t Word of Mouth \t Google")
-        print(facebook,"\t\t\t",instagram,"\t\t\t",word_of_mouth,"\t\t\t\t",google)
-        print("\nPercentage of sales in:")
-        print("Facebook \t Instagram \t Word of Mouth \t Google")
-        print(percent(facebook_purchase_amt),"\t\t",percent(instagram_purchase_amt),"\t\t",percent(word_of_mouth_purchase_amt),"\t\t\t",percent(google_purchase_amt))
+        showday()
+
+### Appends temp list with customer data ###
 
     temp = []
     temp.append(listof_phonenumbers)
@@ -181,37 +188,26 @@ while new_day == "y":
     temp.append(word_of_mouth_purchase_amt)
     temp.append(google_purchase_amt) ## percentage of dollars per channel
 
-    '''
-        dateday # 7
+### Appends dictionary with temp lists ###
 
-        data[dateday] = temp
+    data[dateday] = temp
 
-        data = {}
-        data[7] = temp
-
-        data = {empty, empty, empty, empty, empty, empty, [temp stuff]}
-    '''
-
-    new_day = input("Would you like to begin a new day? (y/n)")
+    new_day = input("\nWould you like to begin a new day? (y/n)")
     while new_day != "y" and new_day != 'n':
         print("\nInvalid input")
         new_day = input("Would you like to begin a new day? (y/n)")
 
     if new_day == "n":
-        view_phonelist = input("Would you like to view the list of phone numbers? (y/n): ")
+        view_phonelist = input("Would you like to view todays list of phone numbers? (y/n): ")
         while view_phonelist != "y" and view_phonelist != 'n':
             print("Invalid input")
-            view_phonelist = input("Would you like to view the list of phone numbers? (y/n): ")
+            view_phonelist = input("Would you like to view todays list of phone numbers? (y/n): ")
 
         if view_phonelist == "y":
             print(listof_phonenumbers)
 
-        show_month = input("Press y to run the monthly report, and anything else to end the program. (y/n)")
+        show_month = input("\nPress \"y\" to run the monthly report, and anything else to end the program: ")
 
         if (show_month == 'y'):
-            # call the funcion to calculate aand print monthly report, and finish running the program
+            # call the function to calculate and print monthly report, and finish running the program
             showMonth()
-
-
-
-
